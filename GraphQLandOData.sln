@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ODataDemo", "ODataDemo\ODataDemo.csproj", "{E25EF616-D74F-4453-B5B5-608EDC9CA357}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{95FCA9A5-0C89-415F-85B0-84D33D2F0DE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQLDemo", "GraphQLDemo\GraphQLDemo.csproj", "{FF943CFB-EAEA-460C-9251-F0783982608D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E25EF616-D74F-4453-B5B5-608EDC9CA357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E25EF616-D74F-4453-B5B5-608EDC9CA357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E25EF616-D74F-4453-B5B5-608EDC9CA357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E25EF616-D74F-4453-B5B5-608EDC9CA357}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95FCA9A5-0C89-415F-85B0-84D33D2F0DE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95FCA9A5-0C89-415F-85B0-84D33D2F0DE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95FCA9A5-0C89-415F-85B0-84D33D2F0DE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95FCA9A5-0C89-415F-85B0-84D33D2F0DE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF943CFB-EAEA-460C-9251-F0783982608D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF943CFB-EAEA-460C-9251-F0783982608D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF943CFB-EAEA-460C-9251-F0783982608D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF943CFB-EAEA-460C-9251-F0783982608D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
