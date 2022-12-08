@@ -9,7 +9,9 @@ builder.Services.AddDbContext<LibraryDbContext>();
 builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>()
-    .AddFiltering();
+    .AddFiltering()
+    .AddProjections()
+    .AddSorting();
 
 var app = builder.Build();
 

@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "6c556326-8063-44e6-adad-9cb20cc617c0",
+		"name": "GraphQL and OData",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24750442"
+	},
+	"item": [
+		{
+			"name": "OData",
+			"item": [
+				{
+					"name": "All books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9000/api/books/edm",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"books",
+								"edm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All books titles in 20th century",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9000/api/books/edm?$select=title&$filter=publishedYear gt 1900",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"books",
+								"edm"
+							],
+							"query": [
+								{
+									"key": "$select",
+									"value": "title"
+								},
+								{
+									"key": "$filter",
+									"value": "publishedYear gt 1900"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All books in Adventure genre, descend order by publish year",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9000/api/books/edm?$expand=genres($select=name)&$filter=genres/any(genre: genre/name eq 'Adventure')&$orderby=publishedYear desc&$select=title,description,publishedYear",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"books",
+								"edm"
+							],
+							"query": [
+								{
+									"key": "$expand",
+									"value": "genres($select=name)"
+								},
+								{
+									"key": "$filter",
+									"value": "genres/any(genre: genre/name eq 'Adventure')"
+								},
+								{
+									"key": "$orderby",
+									"value": "publishedYear desc"
+								},
+								{
+									"key": "$select",
+									"value": "title,description,publishedYear"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All books from authors related to Russia",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:9000/api/books/edm?$expand=author($expand=birthLocation,liveLocation)&$filter=author/birthLocation/country eq 'Russia' or author/liveLocation/country eq 'Russia'",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"books",
+								"edm"
+							],
+							"query": [
+								{
+									"key": "$expand",
+									"value": "author($expand=birthLocation,liveLocation)"
+								},
+								{
+									"key": "$filter",
+									"value": "author/birthLocation/country eq 'Russia' or author/liveLocation/country eq 'Russia'"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GraphQL",
+			"item": [
+				{
+					"name": "All books",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query AllBooks {\n    books {\n        title,\n        description,\n        publishedYear,\n        author {\n            firstName,\n            middleName,\n            lastName,\n            birthData,\n            birthLocation {\n                country,\n                city\n            },\n            liveLocation {\n                country,\n                city\n            }\n        },\n        genres {\n            name\n        }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "https://localhost:10000/graphql",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "10000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All books titles in 20th century",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query AllBooks {\n    books (where: { publishedYear: {gt: 1900}}) {\n        title,\n        description,\n        publishedYear,\n        author {\n            firstName,\n            middleName,\n            lastName,\n            birthData,\n            birthLocation {\n                country,\n                city\n            },\n            liveLocation {\n                country,\n                city\n            }\n        },\n        genres {\n            name\n        }\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "https://localhost:10000/graphql",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "10000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All books in Adventure genre, descend order by publish year",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query AllBooks {\n    books (\n        where: { genres: { some: { name: {eq: \"Adventure\" } } } },\n        order: { publishedYear: DESC }\n    ) {\n        title,\n        description,\n        publishedYear\n    }\n}\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "https://localhost:10000/graphql",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "10000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All books from authors related to Russia",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query AllBooks {\n    books (\n        where: { \n            author: { \n                or: [\n                    { \n                        birthLocation: {\n                            country: { eq: \"Russia\" }\n                        }\n                    },\n                    {\n                        liveLocation: {\n                            country: { eq: \"Russia\" }\n                        }\n                    }\n                ] \n            } \n        },\n    ) {\n        title,\n        publishedYear,\n        author {\n            firstName,\n            middleName,\n            lastName,\n            birthLocation {\n                country\n            },\n            liveLocation {\n                country\n            }\n        },\n\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "https://localhost:10000/graphql",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "10000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

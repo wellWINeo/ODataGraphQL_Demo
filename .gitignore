@@ -289,4 +289,4 @@ __pycache__/
 *.xsd.cs
 
 # Custom
-*.db
+*.db*
