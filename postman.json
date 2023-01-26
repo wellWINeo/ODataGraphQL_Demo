@@ -239,6 +239,32 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Case sensitive test",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetBookByTitle ($title: String!) {\n    books (where: {\n        title: { contains: $title }\n    }) {\n        title,\n    }\n}",
+								"variables": "{\n    // If type \"Мастер\", filter works\n    \"title\": \"мастер\"\n}"
+							}
+						},
+						"url": {
+							"raw": "https://localhost:10000/graphql",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "10000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

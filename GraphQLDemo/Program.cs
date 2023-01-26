@@ -1,4 +1,5 @@
 using GraphQLDemo;
+using GraphQLDemo.Conventions;
 using Shared;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,7 @@ builder.Services.AddDbContext<LibraryDbContext>();
 builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>()
-    .AddFiltering()
+    .AddFiltering<CustomFilteringConvention>()
     .AddProjections()
     .AddSorting();
 
