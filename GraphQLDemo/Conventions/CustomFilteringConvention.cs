@@ -9,13 +9,13 @@ public class CustomFilteringConvention : FilterConvention
     protected override void Configure(IFilterConventionDescriptor descriptor)
     {
         descriptor.AddDefaults();
+        
+        // contains
         descriptor
             .Operation(DefaultFilterOperations.Contains)
             .Name("contains");
-        descriptor.Provider(new QueryableFilterProvider(x
-            => x
-                .AddDefaultFieldHandlers()
-                .AddFieldHandler<QueryableStringInvariantContainsHandler>())
+        descriptor.AddProviderExtension(new QueryableFilterProviderExtension(x
+            => x.AddFieldHandler<QueryableStringInvariantContainsHandler>())
         );
     }
 }
